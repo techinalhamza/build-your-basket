@@ -1,0 +1,38 @@
+{% schema %}
+{
+  "name": "BYOB Basket Builder",
+  "target": "section",
+  "settings": []
+}
+{% endschema %}
+
+<div id="byob-app">
+
+  <div class="byob-header">
+    <h1>Build Your Basket</h1>
+
+    <div class="steps">
+      <span class="step active">1</span>
+      <span class="line"></span>
+      <span class="step">2</span>
+      <span class="line"></span>
+      <span class="step">3</span>
+    </div>
+  </div>
+
+  <div id="byob-content"></div>
+
+  <div class="byob-footer">
+    <div>
+      Total: <span id="basket-total">$0</span>
+    </div>
+
+    <button id="add-basket-cart">
+      Add Basket to Cart
+    </button>
+  </div>
+
+</div>
+
+{{ 'byob.js' | asset_url | script_tag }}
+{{ 'byob.css' | asset_url | stylesheet_tag }}
