@@ -6,21 +6,146 @@
 }
 {% endschema %}
 
-<div id="byob-app">
 
-  <div class="byob-header">
-    <h1>Build Your Basket</h1>
+<style>
+body{
+  background:#3C1906 !important;
+}
+    .basket-steps{
+        min-height:100vh;
+        width:100%;
+    }
 
-    <div class="steps">
-      <span class="step active">1</span>
-      <span class="line"></span>
-      <span class="step">2</span>
-      <span class="line"></span>
-      <span class="step">3</span>
+
+.steps-header {
+    display: flex;
+    align-items: center;
+    {% comment %} justify-content: space-between; {% endcomment %}
+}
+
+.steps-heading h1 {
+       color: #E6CEFE;
+    font-size: 11rem;
+    line-height: 100px;
+}
+
+
+
+
+.step-indicator {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+.steps-img{
+    max-width: 300px;
+    width: 100%;
+}
+.steps-img img{
+    width: 100%;
+}
+.indicator-line {
+    display: block !important;
+}
+.step-indicator .step-icon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: #c2c2c2;
+  font-size: 10px;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  line-height: 50px;
+  font-size: 20px;
+}
+
+.step.active .step-icon {
+  background: #B791E2;
+}
+
+.step p {
+  text-align: center;
+  position: absolute;
+  bottom: -40px;
+  color: #c2c2c2;
+  font-size: 14px;
+  font-weight: bold;
+  text-wrap-mode:nowrap;
+}
+
+.step.active p {
+  color: #B791E2;
+}
+
+.step.step2 p,
+.step.step3 p {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.indicator-line {
+  width: 100%;
+  height: 2px;
+  background: #c2c2c2;
+  flex: 1;
+}
+
+.indicator-line.active {
+  background: #B791E2;
+}
+
+@media screen and (max-width: 500px) {
+  .step p {
+    font-size: 11px;
+    bottom: -20px;
+  }
+}
+</style>
+
+
+<section class="basket-steps scroll-section page-width" data-bg="#3C1906" id="byob-app">
+
+
+<div class="byob-header">
+<div class="steps-header">
+<div class="steps-img">
+    <img class="basket" src="https://cdn.shopify.com/s/files/1/0941/1353/0161/files/Rectangle_5af3b653-bbc8-4946-b662-4c99bb4ee841.webp?v=1773060178">
+</div>
+<div class="steps-heading">
+    <h1>
+        Build Your Own Basket!
+    </h1>
+</div>
+    
+</div>
+  <section class="step-indicator">
+      <div class="step step1 active">
+          <div class="step-icon">1</div>
+        <p>Select Basket</p>
+      </div>
+    <div class="indicator-line active"></div>
+    <div class="step step2">
+        <div class="step-icon">2</div>
+      <p>Choose Product</p>
     </div>
-  </div>
-
-  <div id="byob-content"></div>
+    <div class="indicator-line"></div>
+    <div class="step step3">
+        <div class="step-icon">3</div>
+      <p>Review & Changes</p>
+    </div>
+  </section>
+</div>
+  <div class="byob-content" id="byob-content"></div>
 
   <div class="byob-footer">
     <div>
@@ -32,7 +157,7 @@
     </button>
   </div>
 
-</div>
+</section>
 
 {{ 'byob.js' | asset_url | script_tag }}
 {{ 'byob.css' | asset_url | stylesheet_tag }}

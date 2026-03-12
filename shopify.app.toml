@@ -22,7 +22,7 @@ api_version = "2026-04"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "write_metaobject_definitions,write_metaobjects,write_products"
+scopes = "write_metaobject_definitions,write_metaobjects,write_products,write_app_proxy"
 
 [auth]
 redirect_urls = [ "https://example.com/api/auth" ]
@@ -50,3 +50,8 @@ required = true
 [metaobjects.app.example.fields.description]
 name = "Description"
 type = "multi_line_text_field"
+
+[app_proxy]
+url = "https://scale-waterproof-tumor-ideas.trycloudflare.com/api"
+prefix = "apps"
+subpath = "byob"

@@ -94,3 +94,49 @@ function updateTotal(){
 
 
 renderStep();
+
+
+// async function loadBaskets(){
+
+// const query = `
+// {
+//   metaobjects(type: "basket", first: 10) {
+//     edges {
+//       node {
+//         id
+//         fields {
+//           key
+//           value
+//         }
+//       }
+//     }
+//   }
+// }
+// `;
+
+// const response = await fetch('/apps/2024-01/graphql.json', {
+//   method:'POST',
+//   headers:{
+//     'Content-Type':'application/json'
+//   },
+//   body: JSON.stringify({query})
+// });
+
+// const data = await response.json();
+
+// console.log(data);
+
+// }
+// loadBaskets();
+
+async function loadBaskets(){
+
+const res = await fetch("/apps/byob/baskets");
+
+const data = await res.json();
+
+console.log(data);
+
+}
+
+loadBaskets();
