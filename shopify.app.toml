@@ -52,6 +52,6 @@ name = "Description"
 type = "multi_line_text_field"
 
 [app_proxy]
-url = "https://scale-waterproof-tumor-ideas.trycloudflare.com/api"
+url = "https://scale-waterproof-tumor-ideas.trycloudflare.com/"
 prefix = "apps"
-subpath = "byob"
+subpath = "my-byob"

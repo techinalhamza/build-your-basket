@@ -24,6 +24,31 @@ const shopify = shopifyApp({
     : {}),
 });
 
+
+export async function getMetaobjects(admin, type = "basket") {
+  const response = await admin.graphql(`
+    query GetMetaobjects {
+      metaobjects(first: 20, type: "${type}") {
+        edges {
+          node {
+            id
+            handle
+            type
+            fields {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const data = await response.json();
+  return data.data.metaobjects.edges;
+}
+
+
 export default shopify;
 export const apiVersion = ApiVersion.October25;
 export const addDocumentResponseHeaders = shopify.addDocumentResponseHeaders;

@@ -129,14 +129,46 @@ renderStep();
 // }
 // loadBaskets();
 
-async function loadBaskets(){
+async function loadBaskets() {
+  console.log("first")
+  try {
+    const res = await fetch("/apps/my-byob/baskets");
 
-const res = await fetch("/apps/byob/baskets");
+    console.log(res)
+    if (!res.ok) throw new Error("Request failed: " + res.status);
+    const baskets = await res.json();
+console.log(baskets)
+    const container = document.getElementById("byob-content");
 
-const data = await res.json();
+    container.innerHTML = "";
 
-console.log(data);
+    baskets.forEach(item => {
 
+      const fields = item.node.fields;
+
+      let title = "";
+      let price = "";
+
+      fields.forEach(f => {
+        if (f.key === "title") title = f.value;
+        if (f.key === "price") price = f.value;
+      });
+
+      const card = document.createElement("div");
+
+      card.className = "basket-card";
+
+      card.innerHTML = `
+        <h3>${title}</h3>
+        <p>Price: $${price}</p>
+      `;
+
+      container.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error("Basket load error:", err);
+  }
 }
 
 loadBaskets();
